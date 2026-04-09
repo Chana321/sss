@@ -152,10 +152,53 @@
     .modal-desc-text{font-size:14px;color:#374151;line-height:1.75;margin-bottom:22px}
 
     .modal-cta{display:flex;gap:10px;flex-wrap:wrap}
-    .btn-primary{flex:1;min-width:130px;padding:12px 18px;border-radius:12px;border:none;background:var(--blue);color:white;font-family:'Prompt',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:background .15s;display:flex;align-items:center;justify-content:center;gap:6px}
-    .btn-primary:hover{background:#0c477d}
-    .btn-line{flex:1;min-width:130px;padding:12px 18px;border-radius:12px;border:none;background:#00b900;color:white;font-family:'Prompt',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:opacity .15s;display:flex;align-items:center;justify-content:center;gap:6px}
-    .btn-line:hover{opacity:.88}
+    .btn-primary {
+    flex: 1;
+    min-width: 130px;
+    padding: 12px 18px;
+    border-radius: 12px;
+    border: none;
+    background: var(--blue);
+    color: white !important; /* บังคับสีขาว */
+    text-decoration: none;   /* เอาขีดเส้นใต้ออก (สำคัญมากสำหรับแท็ก a) */
+    font-family: 'Prompt', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background .15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.btn-primary:hover {
+    background: #0c477d;
+  }
+
+.btn-line {
+    flex: 1;
+    min-width: 130px;
+    padding: 12px 18px;
+    border-radius: 12px;
+    border: none;
+    background: #00b900;
+    color: white !important; /* บังคับสีขาว */
+    text-decoration: none;   /* เอาขีดเส้นใต้ออก */
+    font-family: 'Prompt', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity .15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.btn-line:hover {
+    opacity: .88;
+}
     .btn-outline{flex:1;min-width:130px;padding:12px 18px;border-radius:12px;border:1px solid var(--border);background:white;font-family:'Prompt',sans-serif;font-size:14px;font-weight:500;color:#0f172a;cursor:pointer;transition:background .15s}
     .btn-outline:hover{background:var(--bg)}
 
@@ -201,14 +244,14 @@
         <div class="modal-section-label">รายละเอียด</div>
         <div class="modal-desc-text" id="modalDesc"></div>
         <div class="modal-cta">
-          <button class="btn-primary" onclick="callNow()">
+          <a href="tel:0882692553" class="btn-primary">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
-            โทรติดต่อ
-          </button>
-          <button class="btn-line" onclick="lineContact()">
+              โทรติดต่อ
+          </a>
+          <a href="https://line.me/ti/p/~YOUR_LINE_ID" target="_blank" class="btn-line">
             <svg width="16" height="16" viewBox="0 0 40 40" fill="white"><path d="M20 2C10.06 2 2 9.16 2 17.96c0 5.87 3.7 11.01 9.27 13.93-.4 1.5-1.47 5.43-1.68 6.27-.26 1.02.37 1.01.78.74.32-.21 5.1-3.46 7.17-4.87.73.1 1.48.15 2.24.15 9.94 0 18-7.16 18-15.96C38 9.16 29.94 2 20 2z"/></svg>
-            ติดต่อ LINE
-          </button>
+              ติดต่อ LINE
+          </a>
           <button class="btn-outline" onclick="closeDetail()">ปิด</button>
         </div>
       </div>
@@ -224,8 +267,8 @@
 
     <div class="hero">
       <div class="hero-left">
-        <div class="hero-badge">บ้าน&ที่ดินสวย By onkanok</div>
-        <h1>บ้าน&ที่ดินสวย<br><span>คัดมาแล้ว</span></h1>
+       
+        <h1>บ้าน&ที่ดินสวย<br><span>ByOnkanok</span></h1>
         <div class="hero-sub">รวมที่ดินสวย ทำเลทอง ราคาดีที่สุดในพื้นที่</div>
       </div>
     </div>
@@ -234,7 +277,7 @@
       <span class="filters-label">กรอง :</span>
       <button class="chip active" data-f="all">ทั้งหมด</button>
       <button class="chip" data-f="house">บ้านมือ 1/2</button>
-      <button class="chip" data-f="landhouse">เหมาะปลูกบ้าน</button>
+      <button class="chip" data-f="landhouse">ที่ดินเหมาะปลูกบ้าน</button>
       <button class="chip" data-f="large-land">ที่แปลงใหญ่</button>
       <div class="hero-stat">
         <div class="hero-stat-n" id="count">12</div>
@@ -370,7 +413,7 @@
 
     /* ── Data ── */
     const IMGS = [
-      'img/44.png','img/88.png','img/10.png','img/11.png','img/14.png','img/13.png','img/12.png','img/15.png','img/16.png','img/17.png','img/18.png','img/20.png','img/21.png','img/23.png','img/22.png',
+      'img/44.png','img/88.png','img/10.png','img/11.png','img/14.png','img/13.png','img/12.png','img/24.jpg','img/15.png','img/16.png','img/17.png','img/18.png','img/20.png','img/21.png','img/23.png','img/22.png','img/99.jpg','img/25.jpg',
     ];
 
     /* ── 2. แก้ไขข้อมูลใน DATA ── */
@@ -381,18 +424,22 @@
       gallery: ['img/2/1.webp', 'img/2/2.webp']},
       { title:'ตรงข้ามบ้านต้นมื่น', loc:'ต.พิชัย อ.เมือง ลำปาง', price:'450,000', type:'landhouse', top:true, area:'84 ตร.ว.', desc:'ที่ดินแปลงใหญ่ ติดริมแม่น้ำวัง วิวสวยงามมาก บรรยากาศเงียบสงบ เหมาะสำหรับสร้างบ้านสวนริมน้ำ หรือลงทุน' ,
       gallery: ['img/10.png', 'img/3/1.webp']},
-      { title:'พรประสิทธิ์ซอย 4', loc:'ต.บ่อแฮ้ว อ.เมือง ลำปาง', price:'890,000', type:'landhouse', top:true, area:'100 ตร.ว.', desc:'ที่ดินวิวธรรมชาติสวยงาม บรรยากาศเงียบสงบ เหมาะสำหรับสร้างบ้านพักอาศัย' },
-      { title:'ใกล้บ้านศรีสง่า', loc:'ต.ต้นธงชัย อ.เมือง ลำปาง', price:'450,000', type:'landhouse', top:false, area:'100 ตร.ว.', desc:'ราคาดีที่สุดในย่านแม่ทะ ทางเข้าออกสะดวก ใกล้ถนนสายหลัก เหมาะสร้างบ้าน' },
-      { title:'เจน&จอย 2', loc:'ต.ปงแสงทอง อ.เมือง ลำปาง', price:'490,000', type:'landhouse', top:false, area:'90 ตร.ว.', desc:'ที่ดินแปลงใหญ่ มีสายน้ำผ่านตลอดปี อากาศดี ห่างจากตัวอำเภอไม่ไกล' },
-      { title:'บ้านดงสันเงิน', loc:'ต.บ่อแฮ้ว อ.เมือง ลำปาง', price:'500,000', type:'landhouse', top:false, area:'85 ตร.ว.', desc:'บ้านเดี่ยวชั้นเดียวสร้างใหม่ วัสดุพรีเมียม ดีไซน์ทันสมัย พร้อมเข้าอยู่' },
-      { title:'บ้านสวยสไตล์โมเดิร์น', loc:'อ.เมือง ลำปาง', price:'1,450,000', type:'house', top:false, area:'60 ตร.ว.', desc:'บ้านเดี่ยวชั้นเดียวสร้างใหม่ วัสดุพรีเมียม ดีไซน์ทันสมัย พร้อมเข้าอยู่' },
-      { title:'บ้านหรูใจกลางเมือง', loc:'อ.เมือง ลำปาง', price:'6,500,000', type:'house', top:false, area:'60 ตร.ว.', desc:'บ้านเดี่ยวชั้นเดียวสร้างใหม่ วัสดุพรีเมียม ดีไซน์ทันสมัย พร้อมเข้าอยู่' },
-      { title:'บ้านสวยสไตล์โมเดิร์น (สร้างได้70%)', loc:'อ.เมือง ลำปาง', price:'1,250,000', type:'house', top:false, area:'60 ตร.ว.', desc:'บ้านเดี่ยวชั้นเดียวสร้างใหม่ วัสดุพรีเมียม ดีไซน์ทันสมัย พร้อมเข้าอยู่' },
-      { title:'บ้านกลางป่าเมี่ยง', loc:'อ.เมือง ลำปาง', price:'1,250,000', type:'house', top:false, area:'60 ตร.ว.', desc:'บ้านเดี่ยวชั้นเดียวสร้างใหม่ วัสดุพรีเมียม ดีไซน์ทันสมัย พร้อมเข้าอยู่' },
-      { title:'บ้านสวยสไตล์โมเดิร์น', loc:'อ.เมือง ลำปาง', price:'1,250,000', type:'house', top:false, area:'60 ตร.ว.', desc:'บ้านเดี่ยวชั้นเดียวสร้างใหม่ วัสดุพรีเมียม ดีไซน์ทันสมัย พร้อมเข้าอยู่' },
-      { title:'บ้านสวยสไตล์โมเดิร์น', loc:'อ.เมือง ลำปาง', price:'1,250,000', type:'large-land', top:false, area:'60 ตร.ว.', desc:'บ้านเดี่ยวชั้นเดียวสร้างใหม่ วัสดุพรีเมียม ดีไซน์ทันสมัย พร้อมเข้าอยู่' },
-      { title:'บ้านสวยสไตล์โมเดิร์น', loc:'อ.เมือง ลำปาง', price:'1,250,000', type:'large-land', top:false, area:'60 ตร.ว.', desc:'บ้านเดี่ยวชั้นเดียวสร้างใหม่ วัสดุพรีเมียม ดีไซน์ทันสมัย พร้อมเข้าอยู่' },
-      { title:'บ้านสวยสไตล์โมเดิร์น', loc:'อ.เมือง ลำปาง', price:'1,250,000', type:'large-land', top:false, area:'60 ตร.ว.', desc:'บ้านเดี่ยวชั้นเดียวสร้างใหม่ วัสดุพรีเมียม ดีไซน์ทันสมัย พร้อมเข้าอยู่' },
+      { title:'พรประสิทธิ์ซอย 4', loc:'ต.บ่อแฮ้ว อ.เมือง ลำปาง', price:'890,000', type:'landhouse', top:true, area:'107 ตร.ว.', desc:'ที่ดินวิวธรรมชาติสวยงาม บรรยากาศเงียบสงบ เหมาะสำหรับสร้างบ้านพักอาศัย' ,
+      gallery: ['img/4/1.webp', 'img/4/2.webp']},
+      { title:'ใกล้บ้านศรีสง่า', loc:'ต.ต้นธงชัย อ.เมือง ลำปาง', price:'450,000', type:'landhouse', top:false, area:'100 ตร.ว.', desc:'ราคาดีที่สุดในย่านแม่ทะ ทางเข้าออกสะดวก ใกล้ถนนสายหลัก เหมาะสร้างบ้าน',gallery: ['img/5/1.webp', 'img/5/2.webp']},
+      { title:'เจน&จอย 2', loc:'ต.ปงแสงทอง อ.เมือง ลำปาง', price:'490,000', type:'landhouse', top:false, area:'90 ตร.ว.', desc:'ที่ดินแปลงใหญ่ มีสายน้ำผ่านตลอดปี อากาศดี ห่างจากตัวอำเภอไม่ไกล',gallery: ['img/6/1.webp', 'img/6/2.webp'] },
+      { title:'บ้านดงสันเงิน', loc:'ต.บ่อแฮ้ว อ.เมือง ลำปาง', price:'500,000', type:'landhouse', top:false, area:'85 ตร.ว.', desc:'บ้านเดี่ยวชั้นเดียวสร้างใหม่ วัสดุพรีเมียม ดีไซน์ทันสมัย พร้อมเข้าอยู่',gallery: ['img/7/1.webp', 'img/7/2.webp'] },
+      { title:'ใกล้วัดร่องกอก', loc:'ต.บ่อแฮ้ว อ.เมือง ลำปาง', price:'1,500,000', type:'landhouse', top:false, area:'1-2-30 ไร่', desc:'บ้านเดี่ยวชั้นเดียวสร้างใหม่ วัสดุพรีเมียม ดีไซน์ทันสมัย พร้อมเข้าอยู่',gallery: ['img/13/1.webp', 'img/13/3.webp'] },
+      { title:'บ้านสวยสไตล์โมเดิร์น', loc:'อ.เมือง ลำปาง', price:'1,450,000', type:'house', top:false, area:'60 ตร.ว.', desc:'บ้านเดี่ยวชั้นเดียวสร้างใหม่ วัสดุพรีเมียม ดีไซน์ทันสมัย พร้อมเข้าอยู่',gallery: ['img/8/1.webp', 'img/8/2.webp','img/8/3.webp','img/8/5.webp','img/8/4.webp'] },
+      { title:'บ้านหรูใจกลางเมือง', loc:'อ.เมือง ลำปาง', price:'6,500,000', type:'house', top:false, area:'60 ตร.ว.', desc:'บ้านเดี่ยวชั้นเดียวสร้างใหม่ วัสดุพรีเมียม ดีไซน์ทันสมัย พร้อมเข้าอยู่',gallery: ['img/9/1.webp', 'img/9/2.webp','img/9/3.webp','img/9/4.webp'] },
+      { title:'บ้านสวยสไตล์โมเดิร์น (สร้างได้70%)', loc:'อ.เมือง ลำปาง', price:'1,250,000', type:'house', top:false, area:'60 ตร.ว.', desc:'บ้านเดี่ยวชั้นเดียวสร้างใหม่ วัสดุพรีเมียม ดีไซน์ทันสมัย พร้อมเข้าอยู่',gallery: ['img/10/1.webp', 'img/10/2.webp','img/10/3.webp','img/10/4.webp'] },
+      { title:'บ้านกลางป่าเหมี้ยง', loc:'ต.แจ้ซ้อน อ.เมืองปาน ลำปาง', price:'2,500,000', type:'house', top:false, area:'60 ตร.ว.', desc:'บ้านเดี่ยวชั้นเดียวสร้างใหม่ วัสดุพรีเมียม ดีไซน์ทันสมัย พร้อมเข้าอยู่',gallery: ['img/11/1.webp', 'img/11/2.webp','img/11/3.webp','img/11/4.webp'] },
+      { title:'หลังเซเว่นแจ้ห่ม', loc:'ต.วิเชตนคร อ.แจ้ห่ม ลำปาง ', price:'1,800,000', type:'house', top:false, area:'60 ตร.ว.', desc:'บ้านเดี่ยวชั้นเดียวสร้างใหม่ วัสดุพรีเมียม ดีไซน์ทันสมัย พร้อมเข้าอยู่',gallery: ['img/12/1.webp', 'img/12/2.webp'] },
+      { title:'บ้านสวยสไตล์โมเดิร์น', loc:'อ.เมือง ลำปาง', price:'250,000/ไร่', type:'large-land', top:false, area:'21 ไร่', desc:'บ้านเดี่ยวชั้นเดียวสร้างใหม่ วัสดุพรีเมียม ดีไซน์ทันสมัย พร้อมเข้าอยู่' },
+      { title:'บ้านสวยสไตล์โมเดิร์น', loc:'อ.เมือง ลำปาง', price:'1,250,000', type:'large-land', top:false, area:'5-2-30 ไร่', desc:'บ้านเดี่ยวชั้นเดียวสร้างใหม่ วัสดุพรีเมียม ดีไซน์ทันสมัย พร้อมเข้าอยู่' },
+      { title:'หลังเซเว่นแจ้ห่ม', loc:'อ.แจ้ห่ม ลำปาง', price:'1,800,000', type:'large-land', top:false, area:'4-2-20 ไร่', desc:'บ้านเดี่ยวชั้นเดียวสร้างใหม่ วัสดุพรีเมียม ดีไซน์ทันสมัย พร้อมเข้าอยู่' },
+      { title:'หลังเซเว่นแจ้ห่ม', loc:'อ.แจ้ห่ม ลำปาง', price:'5,500,000', type:'large-land', top:false, area:'2-1-80 ไร่', desc:'บ้านเดี่ยวชั้นเดียวสร้างใหม่ วัสดุพรีเมียม ดีไซน์ทันสมัย พร้อมเข้าอยู่' },
+      { title:'ใกล้วัดพระธาตุลำปางหลวง', loc:'อ.แจ้ห่ม ลำปาง', price:'1,250,000', type:'large-land', top:false, area:'2-1-65 ไร่', desc:'บ้านเดี่ยวชั้นเดียวสร้างใหม่ วัสดุพรีเมียม ดีไซน์ทันสมัย พร้อมเข้าอยู่' },
       // สามารถเพิ่มรายการอื่นๆ โดยระบุ type ให้ตรงกับ 'house', 'landhouse' หรือ 'large-land'
     ];
 
