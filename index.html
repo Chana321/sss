@@ -274,6 +274,130 @@
       .detail-grid{grid-template-columns:1fr 1fr}
       .modal-gallery{height:280px}
     }
+
+/* คอนเทนเนอร์หลักของปุ่ม FAB */
+.fab-wrapper {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 9999; /* ให้ลอยทับทุกอย่าง */
+    display: flex;
+    flex-direction: column; /* เรียงจากบนลงล่าง */
+    align-items: center;
+    gap: 12px;
+}
+
+/* คอนเทนเนอร์สำหรับปุ่มย่อย (FB, Line, Tel) */
+.fab-options {
+    display: flex;
+    flex-direction: column; /* ปุ่มย่อยเรียงต่อกันในแนวตั้ง */
+    gap: 10px;
+    visibility: hidden;
+    opacity: 0;
+    /* จุดสำคัญ: ให้เริ่มจากข้างล่างแล้วค่อยพุ่งขึ้น */
+    transform: translateY(40px) scale(0.6); 
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    will-change: transform, opacity;
+}
+
+/* แสดงปุ่มย่อยเมื่อถูกสั่งโชว์ */
+.fab-options.show {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0) scale(1); /* พุ่งขึ้นมาที่ตำแหน่งปกติเหนือปุ่มหลัก */
+}
+
+/* ✅ ปรับแต่งปุ่มหลัก: ไร้ขอบ และพื้นหลังสีเทาจางๆ แบบในรูป */
+.fab-main {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    /* ✅ เปลี่ยนเป็นสีเทาจางๆ (สมมติว่าเป็นสีเทาอ่อนๆ) */
+    background: #f1f3f5; 
+    /* ✅ เอา border ออก (ไร้ขอบ) */
+    border: none; 
+    /* ✅ เงาให้นุ่มนวลขึ้นเพื่อให้ปุ่มดู "ลอย" ขึ้นมา */
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.15); 
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 2;
+    padding: 0; /* เคลียร์ padding เพื่อให้รูปอยู่กึ่งกลาง */
+    overflow: hidden;
+    will-change: transform, background;
+}
+
+/* จัดการขนาดรูปภาพข้างในปุ่มหลัก (หูฟัง) */
+.fab-main img {
+    width: 32px;  /* ขนาดที่เหมาะสมกับปุ่ม 56px */
+    height: 32px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+/* เมื่อกดเปิดเมนู (Active) */
+.fab-main.active {
+    /* ให้ขยายตัวเล็กน้อยแทนการหมุน */
+    transform: scale(1.1); 
+    /* ✅ เปลี่ยนพื้นหลังให้เข้มขึ้นนิดหน่อย */
+    background: #e9ecef; 
+    /* ✅ เอา border-color ออกเช่นกัน */
+}
+
+/* สไตล์ของปุ่มย่อย (FB, Line, Tel) */
+.fab-mini {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    transition: transform 0.2s;
+}
+
+/* เอฟเฟกต์เมื่อเมาส์ชี้ไปที่ปุ่มย่อย */
+.fab-mini:hover { transform: scale(1.1); }
+.fab-mini.line { background: #00b900; }
+.fab-mini.tel { background: var(--blue-mid); }
+.fab-mini.fb { background: #1877F2; }
+
+/* --- ส่วนของ Responsive (ทำให้เล็กลงในมือถือ) --- */
+@media (max-width: 480px) {
+  .fab-wrapper {
+    bottom: 20px; /* ชิดขอบล่างขึ้นอีกนิด */
+    right: 20px;
+    gap: 8px; /* ลดระยะห่างระหว่างปุ่ม */
+  }
+
+  /* ปุ่มหลัก (+) ให้เล็กลง */
+  .fab-main {
+    width: 45px;
+    height: 45px;
+  }
+
+  /* ปรับขนาดรูปในมือถือให้เล็กลงตามปุ่ม */
+  .fab-main img {
+    width: 30px;
+    height: 30px;
+  }
+
+  /* ปุ่มย่อย (FB, Line, Tel) ให้เล็กลง */
+  .fab-mini {
+    width: 40px;
+    height: 40px;
+  }
+
+  /* ปรับระยะพุ่งตอนดีดขึ้นให้สั้นลงตามขนาดปุ่ม */
+  .fab-options {
+    transform: translateY(20px) scale(0.6);
+    gap: 8px;
+  }
+}
   </style>
 </head>
 
@@ -311,7 +435,7 @@
         <div class="modal-section-label">รายละเอียด</div>
         <div class="modal-desc-text" id="modalDesc"></div>
        <div class="modal-cta" style="display: flex; gap: 8px; flex-wrap: wrap;">
-    <a href="tel:08XXXXXXXX" class="btn-primary">
+    <a href="tel:0882692553" class="btn-primary">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
         โทรติดต่อ
     </a>
@@ -366,9 +490,35 @@
     <div class="grid" id="grid"></div>
 
     <footer>© 2026 LAND PRIME · All rights reserved</footer>
+
+    <div class="fab-wrapper">
+  <div class="fab-options" id="fabOptions">
+    <a href="https://facebook.com/YOUR_PAGE" target="_blank" class="fab-mini fb" title="Facebook">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="white"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+    </a>
+    <a href="https://line.me/ti/p/~YOUR_ID" target="_blank" class="fab-mini line" title="LINE">
+      <svg viewBox="0 0 40 40" width="22" height="22" fill="white"><path d="M20 2C10.06 2 2 9.16 2 17.96c0 5.87 3.7 11.01 9.27 13.93-.4 1.5-1.47 5.43-1.68 6.27-.26 1.02.37 1.01.78.74.32-.21 5.1-3.46 7.17-4.87.73.1 1.48.15 2.24.15 9.94 0 18-7.16 18-15.96C38 9.16 29.94 2 20 2z"/></svg>
+    </a>
+    <a href="tel:0882692553" class="fab-mini tel" title="โทรสอบถาม">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.81 12.81 0 0 0 .62 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.81 12.81 0 0 0 2.81.62A2 2 0 0 1 22 18.92z"></path></svg>
+    </a>
   </div>
 
+ <button class="fab-main" id="fabMain" onclick="toggleFAB()" aria-label="ติดต่อเรา">
+  <img src="img/other/call.png" alt="Call Center" class="fab-icon-img-full">
+</button>
+</div>
+
+  </div>
+
+
+
   <script>
+
+    function toggleFAB() {
+  document.getElementById('fabMain').classList.toggle('active');
+  document.getElementById('fabOptions').classList.toggle('show');
+}
     /* ── Gallery state ── */
     let galImages = [];
     let galIndex = 0;
@@ -446,10 +596,6 @@
       document.getElementById('galImg').src = galImages[galIndex];
       buildDots();
     }
-
-    function callNow() { alert('📞 ติดต่อเจ้าของที่ดิน\nเบอร์โทร: 08X-XXX-XXXX'); }
-    function lineContact() { alert('LINE ID: @landprime\nหรือสแกน QR Code ที่หน้าร้าน'); }
-
     /* ── Animated background ── */
     (function () {
       const canvas = document.getElementById('bgCanvas');
@@ -506,7 +652,7 @@
     const DATA = [
       {title:'ติดถนนเส้น แม่ทะ-บ้านกล้วย',map: 'https://maps.app.goo.gl/fDf4KGpGXNbWGr36A',loc:'อ.เมือง ลำปาง', price:'290,000', type:'landhouse', top:false, area:'74 ตร.ว.', desc:'ที่ดินทำเลดี ติดถนนสายหลักแม่ทะ–บ้านกล้วย เหมาะสำหรับสร้างบ้านพักอาศัย การเดินทางสะดวก ใกล้ชุมชน ราคาพิเศษ',
       gallery: ['img/1/3.webp', 'img/1/1.webp', 'img/1/2.webp'] },
-      { title:'หมู่บ้านเด่นสโรชา', loc:'ต.พิชัย อ.เมือง ลำปาง', price:'450,000', type:'landhouse', top:true, area:'99 ตร.ว.', desc:'บ้านสวยมือสอง สภาพดีพร้อมอยู่ ทำเลทองใจกลางเมือง ติดถนนสายหลัก เดินทางสะดวกทุกทิศทาง',
+      { title:'หมู่บ้านเด่นสโรชา', loc:'ต.พิชัย อ.เมือง ลำปาง',map: 'https://maps.app.goo.gl/v6auFGytfLS6wrFo6', price:'450,000', type:'landhouse', top:true, area:'99 ตร.ว.', desc:'บ้านสวยมือสอง สภาพดีพร้อมอยู่ ทำเลทองใจกลางเมือง ติดถนนสายหลัก เดินทางสะดวกทุกทิศทาง',
       gallery: ['img/2/1.webp', 'img/2/2.webp']},
       { title:'ตรงข้ามบ้านต้นมื่น', loc:'ต.พิชัย อ.เมือง ลำปาง', price:'450,000', type:'landhouse', top:true, area:'84 ตร.ว.', desc:'ที่ดินแปลงใหญ่ ติดริมแม่น้ำวัง วิวสวยงามมาก บรรยากาศเงียบสงบ เหมาะสำหรับสร้างบ้านสวนริมน้ำ หรือลงทุน' ,
       gallery: ['img/10.png', 'img/3/1.webp']},
